@@ -5,28 +5,28 @@ export default {
   theme: {
     extend: {
       colors: {
-        dark: {
-          DEFAULT: '#111111',
-          100: '#1a1a1a',
-          200: '#2a2a2a',
-        },
-        light: {
-          DEFAULT: '#ffffff',
-          100: '#f5f5f5',
-          200: '#e5e5e5',
-        },
+        // Background colors (context-aware via CSS variables)
+        'bg-primary': 'var(--bg-primary)',
+        'bg-secondary': 'var(--bg-secondary)',
+        'bg-tertiary': 'var(--bg-tertiary)',
+
+        // Text colors (context-aware)
+        'text-primary': 'var(--text-primary)',
+        'text-secondary': 'var(--text-secondary)',
+        'text-muted': 'var(--text-muted)',
+
+        // Border colors (context-aware)
+        'border-primary': 'var(--border-primary)',
+        'border-secondary': 'var(--border-secondary)',
+
+        // Accent colors (same in both modes)
         accent: {
           DEFAULT: '#60a5fa',
           hover: '#3b82f6',
         },
-        text: {
-          primary: '#ffffff',
-          secondary: '#9ca3af',
-          muted: '#6b7280',
-        }
       },
       fontFamily: {
-        sans: ['Roboto', 'system-ui', 'sans-serif'],
+        sans: ['Inter', 'Roboto', 'system-ui', 'sans-serif'],
       },
       maxWidth: {
         'container': '1200px',
