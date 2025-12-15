@@ -7,12 +7,16 @@
 @layer base {
   :root {
     /* Light mode colors (default) */
-    --bg-primary: #ffffff;
-    --bg-secondary: #f9fafb;
-    --bg-tertiary: #f3f4f6;
+    --bg-primary: #f9fafb;
+    /* Gray-50 (Antes #ffffff) - Tarjetas más suaves */
+    --bg-secondary: #f3f4f6;
+    /* Gray-100 - Fondo base */
+    --bg-tertiary: #e5e7eb;
+    /* Gray-200 - Elementos interactivos */
 
     --text-primary: #111827;
-    --text-secondary: #6b7280;
+    --text-secondary: #4b5563;
+    /* Un poco más oscuro para mejor lectura sobre gris */
     --text-muted: #9ca3af;
 
     --border-primary: #e5e7eb;
@@ -54,5 +58,13 @@
 @layer utilities {
   .container-custom {
     @apply mx-auto max-w-container px-6 md:px-12;
+  }
+
+  .card {
+    @apply rounded-xl border border-gray-200/60 bg-bg-primary shadow-sm transition-all duration-300 ease-out hover:shadow-md dark:border-white/10 dark:bg-white/5 dark:shadow-none dark:hover:bg-white/10 dark:hover:shadow-premium;
+  }
+
+  .card-hover {
+    @apply hover:-translate-y-0.5;
   }
 }

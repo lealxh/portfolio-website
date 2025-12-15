@@ -16,10 +16,10 @@
       <!-- Left Side -->
       <div class="flex flex-col items-center gap-8 lg:items-start">
         <div class="flex flex-col items-center gap-5 md:flex-row md:items-start">
-          <!-- Profile Image (reduced prominence) -->
+          <!-- Profile Image -->
           <img
             src={profilePic}
-            alt="Profile Picture"
+            alt={hero.name}
             class="h-24 w-24 rounded-full object-cover opacity-90 md:h-28 md:w-28"
           />
 
@@ -43,14 +43,14 @@
             href="https://drive.google.com/file/d/1xUAa520tGcj3zBIcgGp0Kox0Hse6DYn_/view?usp=sharing"
             target="_blank"
             rel="noopener noreferrer"
-            class="inline-block rounded bg-accent px-8 py-3 text-center font-medium text-white transition-colors duration-200 hover:bg-accent-hover"
+            class="inline-block rounded-xl bg-accent px-8 py-3 text-center font-medium text-white transition-colors duration-200 hover:bg-accent-hover"
           >
             {hero.cta}
           </a>
 
           <button
             onclick={openChat}
-            class="dark:border-text-muted/40 group inline-flex items-center justify-center gap-2 rounded border border-gray-200 px-8 py-3 font-medium text-gray-900 opacity-90 shadow-sm transition-colors duration-200 hover:opacity-100 hover:shadow-md dark:text-white dark:hover:border-white"
+            class="group inline-flex items-center justify-center gap-2 rounded-xl border border-gray-200/60 bg-bg-primary px-8 py-3 font-medium text-gray-900 shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:shadow-md dark:border-white/10 dark:bg-white/5 dark:text-white dark:hover:bg-white/10 dark:hover:shadow-premium"
           >
             <ChatIcon class="h-4 w-4 transition-colors dark:group-hover:text-white" />
             Chat
@@ -63,7 +63,7 @@
         {#each navigationCards as card}
           <a
             href={card.link}
-            class="dark:border-text-muted/20 dark:hover:border-text-muted/40 group flex aspect-[4/3] flex-col items-center justify-center gap-4 rounded-xl border border-gray-200 p-6 shadow-sm transition-all duration-300 hover:shadow-md sm:aspect-square"
+            class="card card-hover group flex aspect-[4/3] flex-col items-center justify-center gap-4 rounded-xl p-6 sm:aspect-square"
           >
             <div class="flex h-12 w-12 items-center justify-center">
               {#if card.icon === 'projects'}
@@ -84,6 +84,7 @@
                 />
               {/if}
             </div>
+
             <p class="text-sm font-medium text-gray-900 dark:text-white">
               {card.title}
             </p>
@@ -98,11 +99,12 @@
         href={socialLinks.twitter}
         target="_blank"
         rel="noopener noreferrer"
-        class="text-gray-500 transition-colors hover:text-gray-900 dark:text-gray-500 dark:hover:text-white"
+        aria-label="Twitter Profile"
+        class="text-gray-400 transition-colors hover:text-gray-900 dark:hover:text-white"
       >
-        <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+        <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
           <path
-            d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"
+            d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"
           />
         </svg>
       </a>
@@ -110,11 +112,14 @@
         href={socialLinks.linkedin}
         target="_blank"
         rel="noopener noreferrer"
-        class="text-gray-500 transition-colors hover:text-gray-900 dark:text-gray-500 dark:hover:text-white"
+        aria-label="LinkedIn Profile"
+        class="text-gray-400 transition-colors hover:text-gray-900 dark:hover:text-white"
       >
-        <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+        <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
           <path
-            d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"
+            fill-rule="evenodd"
+            d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"
+            clip-rule="evenodd"
           />
         </svg>
       </a>

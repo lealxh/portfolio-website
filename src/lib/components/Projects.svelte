@@ -17,9 +17,7 @@
       <!-- Right Side - Cards -->
       <div class="space-y-4">
         {#each projects.items as project}
-          <div
-            class="dark:border-text-muted/20 dark:hover:border-text-muted/40 rounded-xl border border-gray-200 p-6 shadow-sm transition-all duration-300 hover:shadow-md"
-          >
+          <div class="card p-6">
             <div class="mb-2 flex items-start gap-2">
               <h3 class="text-lg font-semibold text-gray-900 dark:text-white md:text-xl">
                 {project.title}

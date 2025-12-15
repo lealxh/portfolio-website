@@ -17,9 +17,7 @@
       </div>
 
       <!-- Right Side - Contact Card -->
-      <div
-        class="dark:border-text-muted/20 dark:hover:border-text-muted/40 rounded-xl border border-gray-200 p-6 shadow-sm transition-all duration-300 hover:shadow-md"
-      >
+      <div class="card p-6">
         <p class="mb-6 text-sm leading-relaxed text-gray-700 dark:text-gray-400">
           {contact.message}
         </p>
