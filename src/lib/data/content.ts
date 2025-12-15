@@ -1,7 +1,8 @@
 export const hero = {
   greeting: 'Hola',
-  name: "José Leal",
-  tagline: 'Frontend Engineer especializado en aplicaciones enterprise y automatización de workflows. Construyo interfaces mantenibles y herramientas que eliminan trabajo manual.',
+  name: 'José Leal',
+  tagline:
+    'Software Engineer con experiencia en entornos enterprise. Diseño interfaces web y herramientas de automatización que reducen trabajo manual y escalan procesos.',
   cta: 'Descargar CV'
 };
 
@@ -9,12 +10,14 @@ export const whatIDo = {
   title: 'Qué hago',
   areas: [
     {
-      title: 'Frontend Engineering',
-      description: 'Desarrollo aplicaciones web para entornos enterprise con React y SvelteKit. Interfaces mantenibles, escalables y con buen rendimiento.'
+      title: 'Frontend Engineering (Enterprise)',
+      description:
+        'Construyo aplicaciones web mantenibles y escalables en contextos enterprise, trabajando de forma end-to-end desde requerimientos hasta producción, con foco en calidad, performance y experiencia de usuario.'
     },
     {
       title: 'Automation & Internal Tools',
-      description: 'Diseño automatizaciones de workflows con n8n y Node.js. Integro APIs, construyo herramientas internas y elimino trabajo manual repetitivo.'
+      description:
+        'Diseño y desarrollo automatizaciones y herramientas internas para integrar sistemas, eliminar tareas repetitivas y mejorar la eficiencia operativa, utilizando n8n, Node.js y APIs.'
     }
   ]
 };
@@ -23,14 +26,16 @@ export const experience = {
   title: 'Experiencia',
   roles: [
     {
-      position: 'Frontend Engineer',
+      position: 'Enterprise Software Engineer',
       company: 'Globant',
-      description: 'Aplicaciones web enterprise con React y SvelteKit para American Century Investment. Features end-to-end, micro-frontends y migración tecnológica.'
+      description:
+        'Desarrollo de aplicaciones web en entornos financieros y enterprise, trabajando de forma autónoma en features end-to-end, migraciones tecnológicas y arquitecturas de micro-frontends, colaborando con equipos distribuidos.'
     },
     {
-      position: 'Automation Projects',
+      position: 'Automation & Internal Tools',
       company: 'Side Projects',
-      description: 'Automatizaciones de workflows con n8n y Node.js. Content Engine, herramientas internas y pipelines de integración entre sistemas.'
+      description:
+        'Diseño e implementación de proyectos de automatización y tooling interno enfocados en reducir trabajo manual, integrar sistemas y construir soluciones confiables y mantenibles.'
     }
   ]
 };
@@ -40,14 +45,16 @@ export const projects = {
   items: [
     {
       title: 'Content Engine',
-      description: 'Sistema de publicación automática desde Notion a LinkedIn y Twitter. Arquitectura híbrida que evita $100/mes en APIs de Twitter.',
+      description:
+        'Sistema de automatización para publicación de contenido desde Notion a LinkedIn y Twitter. Diseñado para reducir trabajo manual y costos operativos mediante una arquitectura híbrida.',
       stack: ['n8n', 'Playwright', 'Node.js', 'OAuth2'],
       status: 'completed'
     },
     {
       title: 'AI Message Assistant',
-      description: 'Clasificación y respuesta automática de DMs con GPT-4. En desarrollo.',
-      stack: ['n8n', 'OpenAI', 'Vector DB'],
+      description:
+        'Asistente para clasificación y respuesta automática de mensajes, orientado a mejorar tiempos de respuesta y organización de conversaciones. Proyecto en desarrollo.',
+      stack: ['n8n', 'LLMs', 'Vector DB'],
       status: 'in-progress'
     }
   ]
@@ -55,12 +62,12 @@ export const projects = {
 
 export const navigationCards = [
   {
-    title: 'Mis Proyectos',
+    title: 'Proyectos',
     icon: 'projects',
     link: '#projects'
   },
   {
-    title: 'Qué Hago',
+    title: 'Qué hago',
     icon: 'about',
     link: '#what-i-do'
   },
@@ -70,21 +77,21 @@ export const navigationCards = [
     link: '#experience'
   },
   {
-    title: 'Contáctame',
+    title: 'Contacto',
     icon: 'contact',
     link: '#contact'
   }
 ];
 
 export const socialLinks = {
-
   twitter: 'https://x.com/joseleal_n8n',
-  linkedin: 'https://www.linkedin.com/in/jose-gregorio-leal-sanchez',
+  linkedin: 'https://www.linkedin.com/in/jose-gregorio-leal-sanchez'
 };
 
 export const contact = {
   title: 'Contacto',
-  message: '¿Hablamos de automatización o tienes un proyecto en mente?',
+  message:
+    '¿Tienes un proceso que podría automatizarse o un proyecto en el que necesites apoyo técnico?',
   email: 'lealxh@gmail.com',
   linkedin: {
     text: 'LinkedIn',

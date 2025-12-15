@@ -14,7 +14,7 @@
         </h2>
         <a
           href="#hero"
-          class="text-gray-700 dark:text-gray-400 hover:text-accent dark:hover:text-white transition-colors inline-flex items-center gap-2"
+          class="text-gray-700 dark:text-gray-400 dark:hover:text-white transition-colors inline-flex items-center gap-2"
         >
           <svg
             class="w-4 h-4"
@@ -37,7 +37,7 @@
       <div class="space-y-4">
         {#each projects.items as project}
           <div
-            class="border border-gray-800 dark:border-text-muted/20 rounded-xl p-6 hover:border-accent dark:hover:border-text-muted/40 transition-all duration-300"
+            class="border border-gray-200 shadow-sm hover:shadow-md dark:border-text-muted/20 rounded-xl p-6 dark:hover:border-text-muted/40 transition-all duration-300"
           >
             <div class="flex items-start gap-2 mb-2">
               <h3
@@ -60,7 +60,7 @@
             <div class="flex flex-wrap gap-2">
               {#each project.stack as tech}
                 <span
-                  class="text-xs text-gray-600 dark:text-gray-500 px-2 py-1 border border-gray-800 dark:border-text-muted/20 rounded-full"
+                  class="text-xs text-gray-600 dark:text-gray-500 px-2 py-1 border border-gray-200 shadow-sm hover:shadow-md dark:border-text-muted/20 rounded-full"
                 >
                   {tech}
                 </span>

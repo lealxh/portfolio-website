@@ -32,12 +32,12 @@
 
 <button
 	onclick={toggleTheme}
-	class="fixed top-6 right-6 z-50 p-3 rounded-full bg-gray-100 dark:bg-dark-100 border border-gray-300 dark:border-dark-200 hover:border-accent transition-all duration-300 group"
+	class="fixed top-6 right-6 z-50 p-3 rounded-full bg-gray-100 dark:bg-dark-100 border border-gray-300 dark:border-dark-200 transition-all duration-300 group"
 	aria-label="Toggle theme"
 >
 	{#if isDark}
 		<svg
-			class="w-6 h-6 text-gray-400 group-hover:text-accent transition-colors"
+			class="w-6 h-6 text-gray-400  transition-colors"
 			fill="none"
 			stroke="currentColor"
 			viewBox="0 0 24 24"
@@ -51,7 +51,7 @@
 		</svg>
 	{:else}
 		<svg
-			class="w-6 h-6 text-gray-700 group-hover:text-accent transition-colors"
+			class="w-6 h-6 text-gray-700  transition-colors"
 			fill="none"
 			stroke="currentColor"
 			viewBox="0 0 24 24"

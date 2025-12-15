@@ -21,7 +21,7 @@
         </h2>
         <a
           href="#hero"
-          class="text-gray-700 dark:text-gray-400 hover:text-accent dark:hover:text-white transition-colors inline-flex items-center gap-2"
+          class="text-gray-700 dark:text-gray-400 dark:hover:text-white transition-colors inline-flex items-center gap-2"
         >
           <svg
             class="w-4 h-4"
@@ -42,7 +42,7 @@
 
       <!-- Right Side - Contact Card -->
       <div
-        class="border border-gray-800 dark:border-text-muted/20 rounded-xl p-6 hover:border-accent dark:hover:border-text-muted/40 transition-all duration-300"
+        class="border border-gray-200 shadow-sm hover:shadow-md dark:border-text-muted/20 rounded-xl p-6 dark:hover:border-text-muted/40 transition-all duration-300"
       >
         <p
           class="text-sm text-gray-700 dark:text-gray-400 mb-6 leading-relaxed"
@@ -53,7 +53,7 @@
         <div class="space-y-3 mb-6">
           <a
             href={`mailto:${contact.email}`}
-            class="text-gray-900 dark:text-white hover:text-accent transition-colors duration-200 block"
+            class="text-gray-900 dark:text-white transition-colors duration-200 block"
           >
             {contact.email}
           </a>
@@ -61,17 +61,17 @@
             href={contact.linkedin.url}
             target="_blank"
             rel="noopener noreferrer"
-            class="text-gray-900 dark:text-white hover:text-accent transition-colors duration-200 inline-flex items-center gap-2"
+            class="text-gray-900 dark:text-white transition-colors duration-200 inline-flex items-center gap-2"
           >
             {contact.linkedin.text}
             <span aria-hidden="true">→</span>
           </a>
         </div>
 
-        <div class="pt-6 border-t border-gray-800 dark:border-text-muted/20">
+        <div class="pt-6 border-t border-gray-200 shadow-sm hover:shadow-md dark:border-text-muted/20">
           <button
             onclick={openChat}
-            class="text-sm text-gray-700 dark:text-gray-400 hover:text-accent dark:hover:text-white transition-colors inline-flex items-center gap-2"
+            class="text-sm text-gray-700 dark:text-gray-400 dark:hover:text-white transition-colors inline-flex items-center gap-2"
           >
             <svg
               class="w-4 h-4"
