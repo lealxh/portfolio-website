@@ -1,5 +1,6 @@
 <script lang="ts">
   import { experience } from "$lib/data/content";
+  import BackToTop from "$lib/components/BackToTop.svelte";
 </script>
 
 <section id="experience" class="min-h-screen flex items-center py-20 px-6">
@@ -12,25 +13,7 @@
         >
           {experience.title}
         </h2>
-        <a
-          href="#hero"
-          class="text-gray-700 dark:text-gray-400 dark:hover:text-white transition-colors inline-flex items-center gap-2"
-        >
-          <svg
-            class="w-4 h-4"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M5 10l7-7m0 0l7 7m-7-7v18"
-            />
-          </svg>
-          Volver arriba
-        </a>
+        <BackToTop />
       </div>
 
       <!-- Right Side - Cards -->

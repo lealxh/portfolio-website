@@ -20,7 +20,8 @@
 			"(prefers-color-scheme: dark)",
 		).matches;
 
-		isDark = savedTheme ? savedTheme === "dark" : prefersDark;
+		// Default to dark mode if no saved preference
+		isDark = savedTheme ? savedTheme === "dark" : true;
 
 		if (isDark) {
 			document.documentElement.classList.add("dark");
@@ -37,7 +38,7 @@
 >
 	{#if isDark}
 		<svg
-			class="w-6 h-6 text-gray-400  transition-colors"
+			class="w-6 h-6 text-gray-400 transition-colors"
 			fill="none"
 			stroke="currentColor"
 			viewBox="0 0 24 24"
@@ -51,7 +52,7 @@
 		</svg>
 	{:else}
 		<svg
-			class="w-6 h-6 text-gray-700  transition-colors"
+			class="w-6 h-6 text-gray-700 transition-colors"
 			fill="none"
 			stroke="currentColor"
 			viewBox="0 0 24 24"

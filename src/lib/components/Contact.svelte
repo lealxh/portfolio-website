@@ -1,12 +1,8 @@
 <script lang="ts">
   import { contact } from "$lib/data/content";
-
-  function openChat() {
-    const chatButton = document.querySelector(
-      '[aria-label="Abrir chat"]',
-    ) as HTMLButtonElement;
-    chatButton?.click();
-  }
+  import { openChat } from "$lib/stores/chat";
+  import BackToTop from "$lib/components/BackToTop.svelte";
+  import ChatIcon from "$lib/components/icons/ChatIcon.svelte";
 </script>
 
 <section id="contact" class="min-h-screen flex items-center py-20 px-6">
@@ -19,25 +15,7 @@
         >
           {contact.title}
         </h2>
-        <a
-          href="#hero"
-          class="text-gray-700 dark:text-gray-400 dark:hover:text-white transition-colors inline-flex items-center gap-2"
-        >
-          <svg
-            class="w-4 h-4"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M5 10l7-7m0 0l7 7m-7-7v18"
-            />
-          </svg>
-          Volver arriba
-        </a>
+        <BackToTop />
       </div>
 
       <!-- Right Side - Contact Card -->
@@ -68,24 +46,14 @@
           </a>
         </div>
 
-        <div class="pt-6 border-t border-gray-200 shadow-sm hover:shadow-md dark:border-text-muted/20">
+        <div
+          class="pt-6 border-t border-gray-200 shadow-sm hover:shadow-md dark:border-text-muted/20"
+        >
           <button
             onclick={openChat}
             class="text-sm text-gray-700 dark:text-gray-400 dark:hover:text-white transition-colors inline-flex items-center gap-2"
           >
-            <svg
-              class="w-4 h-4"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"
-              />
-            </svg>
+            <ChatIcon />
             Habla con mi asistente
           </button>
         </div>
