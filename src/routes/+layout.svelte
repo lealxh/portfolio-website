@@ -1,17 +1,23 @@
 <script lang="ts">
-	import '../app.css';
-	import ThemeToggle from '$lib/components/ThemeToggle.svelte';
+  import '../app.css';
+  import ThemeToggle from '$lib/components/ThemeToggle.svelte';
 
-	let { children } = $props();
+  let { children } = $props();
 </script>
 
 <svelte:head>
-	<title>José Leal - Frontend Engineer</title>
-	<meta name="description" content="Frontend Engineer especializado en aplicaciones enterprise y automatización de workflows." />
-	<link rel="icon" href="/favicon.svg" />
-	<link rel="preconnect" href="https://fonts.googleapis.com" />
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
-	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <title>José Leal - Frontend Engineer</title>
+  <meta
+    name="description"
+    content="Frontend Engineer especializado en aplicaciones enterprise y automatización de workflows."
+  />
+  <link rel="icon" href="/favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
 </svelte:head>
 
 <ThemeToggle />

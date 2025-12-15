@@ -6,9 +6,9 @@ Este store maneja todo el estado relacionado con el chat del portfolio.
 
 ```typescript
 interface ChatState {
-  isOpen: boolean;          // ¿Está abierto el chat?
-  messages: ChatMessage[];  // Array de mensajes
-  isTyping: boolean;        // ¿Está el asistente escribiendo?
+  isOpen: boolean; // ¿Está abierto el chat?
+  messages: ChatMessage[]; // Array de mensajes
+  isTyping: boolean; // ¿Está el asistente escribiendo?
 }
 
 type ChatMessage = {
@@ -53,10 +53,10 @@ type ChatMessage = {
 ```svelte
 <script>
   import { addUserMessage, addAssistantMessage } from '$lib/stores/chat';
-  
+
   function handleSend(text: string) {
     addUserMessage(text);
-    
+
     // Simular respuesta del asistente
     setTimeout(() => {
       addAssistantMessage('Respuesta del asistente');
@@ -70,7 +70,7 @@ type ChatMessage = {
 ```svelte
 <script>
   import { setTyping, chatStore } from '$lib/stores/chat';
-  
+
   function simulateTyping() {
     setTyping(true);
     setTimeout(() => {
@@ -86,14 +86,14 @@ type ChatMessage = {
 
 ## Funciones Disponibles
 
-| Función | Parámetros | Descripción |
-|---------|------------|-------------|
-| `openChat()` | - | Abre el chat |
-| `closeChat()` | - | Cierra el chat |
-| `addUserMessage(text)` | `text: string` | Agrega un mensaje del usuario |
-| `addAssistantMessage(text)` | `text: string` | Agrega un mensaje del asistente |
-| `setTyping(isTyping)` | `isTyping: boolean` | Activa/desactiva el indicador de typing |
-| `resetChat()` | - | Resetea el chat completamente |
+| Función                     | Parámetros          | Descripción                             |
+| --------------------------- | ------------------- | --------------------------------------- |
+| `openChat()`                | -                   | Abre el chat                            |
+| `closeChat()`               | -                   | Cierra el chat                          |
+| `addUserMessage(text)`      | `text: string`      | Agrega un mensaje del usuario           |
+| `addAssistantMessage(text)` | `text: string`      | Agrega un mensaje del asistente         |
+| `setTyping(isTyping)`       | `isTyping: boolean` | Activa/desactiva el indicador de typing |
+| `resetChat()`               | -                   | Resetea el chat completamente           |
 
 ## Stores Derivados
 
@@ -115,24 +115,24 @@ Store derivado de solo lectura que indica si el chat está abierto:
 
 ```svelte
 <script lang="ts">
-  import { 
-    chatStore, 
-    openChat, 
+  import {
+    chatStore,
+    openChat,
     closeChat,
-    addUserMessage, 
+    addUserMessage,
     addAssistantMessage,
-    setTyping 
+    setTyping
   } from '$lib/stores/chat';
-  
+
   let input = '';
-  
+
   function handleSubmit() {
     if (!input.trim()) return;
-    
+
     // Agregar mensaje del usuario
     addUserMessage(input);
     input = '';
-    
+
     // Simular respuesta del asistente
     setTyping(true);
     setTimeout(() => {
@@ -144,17 +144,17 @@ Store derivado de solo lectura que indica si el chat está abierto:
 {#if $chatStore.isOpen}
   <div class="chat-window">
     <button onclick={closeChat}>✕</button>
-    
+
     {#each $chatStore.messages as message}
       <div class={message.sender}>
         {message.text}
       </div>
     {/each}
-    
+
     {#if $chatStore.isTyping}
       <div class="typing-indicator">...</div>
     {/if}
-    
+
     <input bind:value={input} on:submit={handleSubmit} />
   </div>
 {:else}

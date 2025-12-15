@@ -22,16 +22,16 @@ export default {
         // Accent colors (same in both modes)
         accent: {
           DEFAULT: '#60a5fa',
-          hover: '#3b82f6',
-        },
+          hover: '#3b82f6'
+        }
       },
       fontFamily: {
-        sans: ['Inter', 'Roboto', 'system-ui', 'sans-serif'],
+        sans: ['Inter', 'Roboto', 'system-ui', 'sans-serif']
       },
       maxWidth: {
-        'container': '1200px',
+        container: '1200px'
       }
-    },
+    }
   },
-  plugins: [],
-}
+  plugins: []
+};

@@ -1,4 +1,14 @@
-export const hero = {
+import type {
+  Hero,
+  WhatIDo,
+  Experience,
+  Projects,
+  NavigationCard,
+  SocialLinks,
+  Contact
+} from '$lib/types/content';
+
+export const hero: Hero = {
   greeting: 'Hola',
   name: 'José Leal',
   tagline:
@@ -6,7 +16,7 @@ export const hero = {
   cta: 'Descargar CV'
 };
 
-export const whatIDo = {
+export const whatIDo: WhatIDo = {
   title: 'Qué hago',
   areas: [
     {
@@ -22,7 +32,7 @@ export const whatIDo = {
   ]
 };
 
-export const experience = {
+export const experience: Experience = {
   title: 'Experiencia',
   roles: [
     {
@@ -40,7 +50,7 @@ export const experience = {
   ]
 };
 
-export const projects = {
+export const projects: Projects = {
   title: 'Proyectos',
   items: [
     {
@@ -60,7 +70,7 @@ export const projects = {
   ]
 };
 
-export const navigationCards = [
+export const navigationCards: NavigationCard[] = [
   {
     title: 'Proyectos',
     icon: 'projects',
@@ -83,12 +93,12 @@ export const navigationCards = [
   }
 ];
 
-export const socialLinks = {
+export const socialLinks: SocialLinks = {
   twitter: 'https://x.com/joseleal_n8n',
   linkedin: 'https://www.linkedin.com/in/jose-gregorio-leal-sanchez'
 };
 
-export const contact = {
+export const contact: Contact = {
   title: 'Contacto',
   message:
     '¿Tienes un proceso que podría automatizarse o un proyecto en el que necesites apoyo técnico?',

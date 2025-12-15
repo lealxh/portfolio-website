@@ -10,25 +10,25 @@
     --bg-primary: #ffffff;
     --bg-secondary: #f9fafb;
     --bg-tertiary: #f3f4f6;
-    
+
     --text-primary: #111827;
     --text-secondary: #6b7280;
     --text-muted: #9ca3af;
-    
+
     --border-primary: #e5e7eb;
     --border-secondary: #d1d5db;
   }
-  
+
   .dark {
     /* Dark mode colors */
     --bg-primary: #111111;
     --bg-secondary: #1a1a1a;
     --bg-tertiary: #2a2a2a;
-    
+
     --text-primary: #ffffff;
     --text-secondary: #9ca3af;
     --text-muted: #6b7280;
-    
+
     --border-primary: rgba(107, 114, 128, 0.2);
     --border-secondary: rgba(107, 114, 128, 0.4);
   }
@@ -39,13 +39,20 @@
 
   body {
     @apply bg-bg-secondary text-text-primary antialiased;
-    font-family: 'Inter', 'Roboto', system-ui, -apple-system, sans-serif;
-    transition: background-color 0.3s ease, color 0.3s ease;
+    font-family:
+      'Inter',
+      'Roboto',
+      system-ui,
+      -apple-system,
+      sans-serif;
+    transition:
+      background-color 0.3s ease,
+      color 0.3s ease;
   }
 }
 
 @layer utilities {
   .container-custom {
-    @apply max-w-container mx-auto px-6 md:px-12;
+    @apply mx-auto max-w-container px-6 md:px-12;
   }
 }

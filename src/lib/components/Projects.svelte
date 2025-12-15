@@ -1,16 +1,14 @@
 <script lang="ts">
-  import { projects } from "$lib/data/content";
-  import BackToTop from "$lib/components/BackToTop.svelte";
+  import { projects } from '$lib/data/content';
+  import BackToTop from '$lib/components/BackToTop.svelte';
 </script>
 
-<section id="projects" class="min-h-screen flex items-center py-20 px-6">
-  <div class="w-full max-w-4xl mx-auto">
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start">
+<section id="projects" class="flex min-h-screen items-center px-6 py-20">
+  <div class="mx-auto w-full max-w-4xl">
+    <div class="grid grid-cols-1 items-start gap-8 lg:grid-cols-2 lg:gap-12">
       <!-- Left Side - Title -->
       <div class="space-y-6">
-        <h2
-          class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white"
-        >
+        <h2 class="text-3xl font-bold text-gray-900 dark:text-white md:text-4xl">
           {projects.title}
         </h2>
         <BackToTop />
@@ -20,30 +18,25 @@
       <div class="space-y-4">
         {#each projects.items as project}
           <div
-            class="border border-gray-200 shadow-sm hover:shadow-md dark:border-text-muted/20 rounded-xl p-6 dark:hover:border-text-muted/40 transition-all duration-300"
+            class="dark:border-text-muted/20 dark:hover:border-text-muted/40 rounded-xl border border-gray-200 p-6 shadow-sm transition-all duration-300 hover:shadow-md"
           >
-            <div class="flex items-start gap-2 mb-2">
-              <h3
-                class="text-lg md:text-xl font-semibold text-gray-900 dark:text-white"
-              >
+            <div class="mb-2 flex items-start gap-2">
+              <h3 class="text-lg font-semibold text-gray-900 dark:text-white md:text-xl">
                 {project.title}
               </h3>
-              {#if project.status === "in-progress"}
-                <span
-                  class="text-xs text-gray-500 dark:text-gray-500 italic mt-1"
+              {#if project.status === 'in-progress'}
+                <span class="mt-1 text-xs italic text-gray-500 dark:text-gray-500"
                   >[En desarrollo]</span
                 >
               {/if}
             </div>
-            <p
-              class="text-sm text-gray-700 dark:text-gray-400 leading-relaxed mb-3"
-            >
+            <p class="mb-3 text-sm leading-relaxed text-gray-700 dark:text-gray-400">
               {project.description}
             </p>
             <div class="flex flex-wrap gap-2">
               {#each project.stack as tech}
                 <span
-                  class="text-xs text-gray-600 dark:text-gray-500 px-2 py-1 border border-gray-200 shadow-sm hover:shadow-md dark:border-text-muted/20 rounded-full"
+                  class="dark:border-text-muted/20 rounded-full border border-gray-200 px-2 py-1 text-xs text-gray-600 shadow-sm hover:shadow-md dark:text-gray-500"
                 >
                   {tech}
                 </span>
