@@ -3,7 +3,24 @@
   import ThemeToggle from '$lib/components/ThemeToggle.svelte';
 
   let { children } = $props();
+
+  // Mouse spotlight logic
+  let mouseX = $state(0);
+  let mouseY = $state(0);
+
+  function handleMouseMove(event: MouseEvent) {
+    mouseX = event.clientX;
+    mouseY = event.clientY;
+  }
 </script>
+
+<svelte:window onmousemove={handleMouseMove} />
+
+<!-- Spotlight Effect -->
+<div
+  class="pointer-events-none fixed inset-0 z-30 transition-opacity duration-300"
+  style="background: radial-gradient(1200px circle at {mouseX}px {mouseY}px, var(--spotlight-color), transparent 70%);"
+></div>
 
 <svelte:head>
   <title>José Leal - Frontend Engineer & Automation Consultant</title>

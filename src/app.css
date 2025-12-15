@@ -21,6 +21,9 @@
 
     --border-primary: #e5e7eb;
     --border-secondary: #d1d5db;
+
+    --spotlight-color: rgba(96, 165, 250, 0.04);
+    /* Opacidad reducida del 0.08 */
   }
 
   .dark {
@@ -35,6 +38,9 @@
 
     --border-primary: rgba(107, 114, 128, 0.2);
     --border-secondary: rgba(107, 114, 128, 0.4);
+
+    --spotlight-color: rgba(96, 165, 250, 0.06);
+    /* Opacidad reducida drásticamente del 0.15 */
   }
 
   html {
