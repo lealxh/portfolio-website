@@ -1,112 +1,233 @@
-import { writable, derived } from 'svelte/store';
+import { writable, get } from 'svelte/store';
+import type { ChatMessage, ChatState, ChatResponse } from '$lib/types/chat';
+
+// ============================================
+// CONSTANTES
+// ============================================
+
+const STORAGE_KEY = 'portfolio-chat-session';
+
+// ============================================
+// HELPER FUNCTIONS
+// ============================================
 
 /**
- * Message type definition
+ * Obtiene o crea un session_id en localStorage
  */
-export type ChatMessage = {
-  id: number;
-  text: string;
-  sender: 'user' | 'assistant';
-  timestamp: Date;
-};
+function getOrCreateSessionId(): string {
+  if (typeof window === 'undefined') return '';
 
-/**
- * Chat state interface
- */
-export interface ChatState {
-  isOpen: boolean;
-  messages: ChatMessage[];
-  isTyping: boolean;
+  let sessionId = localStorage.getItem(STORAGE_KEY);
+  if (!sessionId) {
+    sessionId = crypto.randomUUID();
+    localStorage.setItem(STORAGE_KEY, sessionId);
+  }
+  return sessionId;
 }
 
-/**
- * Initial chat state with welcome message
- */
+// ============================================
+// ESTADO INICIAL
+// ============================================
+
 const initialState: ChatState = {
-  isOpen: false,
   messages: [
     {
-      id: 1,
-      text: '¡Hola! Soy el asistente virtual de José. ¿En qué puedo ayudarte hoy?',
-      sender: 'assistant',
-      timestamp: new Date()
+      role: 'assistant',
+      content: '¡Hola! Soy José Leal, Frontend Engineer y especialista en automatización. ¿En qué puedo ayudarte?',
+      timestamp: new Date().toISOString()
     }
   ],
-  isTyping: false
+  isLoading: false,
+  error: null,
+  sessionId: '',
+  isOpen: false
 };
 
-/**
- * Main chat store
- * This store manages all chat-related state: visibility, messages, and typing indicator
- */
-export const chatStore = writable<ChatState>(initialState);
+// ============================================
+// STORE CREATION
+// ============================================
 
-/**
- * Derived store for chat visibility (for backward compatibility)
- */
-export const isChatOpen = derived(chatStore, ($chat) => $chat.isOpen);
+function createChatStore() {
+  const { subscribe, set, update } = writable<ChatState>(initialState);
 
-/**
- * Helper function to open the chat
- */
-export function openChat() {
-  chatStore.update((state) => ({ ...state, isOpen: true }));
-}
+  return {
+    subscribe,
 
-/**
- * Helper function to close the chat
- */
-export function closeChat() {
-  chatStore.update((state) => ({ ...state, isOpen: false }));
-}
+    /**
+     * Inicializa el chat store (obtiene/crea session_id)
+     */
+    init: () => {
+      update((state) => ({
+        ...state,
+        sessionId: getOrCreateSessionId()
+      }));
+    },
 
-/**
- * Helper function to add a user message
- */
-export function addUserMessage(text: string) {
-  chatStore.update((state) => ({
-    ...state,
-    messages: [
-      ...state.messages,
-      {
-        id: state.messages.length + 1,
-        text,
-        sender: 'user',
-        timestamp: new Date()
+    /**
+     * Abre el modal del chat
+     */
+    open: () => {
+      update((state) => ({ ...state, isOpen: true }));
+    },
+
+    /**
+     * Cierra el modal del chat
+     */
+    close: () => {
+      update((state) => ({ ...state, isOpen: false }));
+    },
+
+    /**
+     * Agrega un mensaje al historial
+     */
+    addMessage: (message: ChatMessage) => {
+      update((state) => ({
+        ...state,
+        messages: [...state.messages, message],
+        error: null
+      }));
+    },
+
+    /**
+     * Setea el estado de loading
+     */
+    setLoading: (isLoading: boolean) => {
+      update((state) => ({ ...state, isLoading }));
+    },
+
+    /**
+     * Setea un error
+     */
+    setError: (error: string | null) => {
+      update((state) => ({ ...state, error, isLoading: false }));
+    },
+
+    /**
+     * Limpia el error actual
+     */
+    clearError: () => {
+      update((state) => ({ ...state, error: null }));
+    },
+
+    /**
+     * Envía un mensaje al chatbot
+     *
+     * Flow:
+     * 1. Agrega mensaje del usuario al UI
+     * 2. Setea loading
+     * 3. Llama al API /api/chat
+     * 4. Agrega respuesta del asistente
+     * 5. Maneja errores
+     */
+    sendMessage: async (text: string) => {
+      if (!text.trim()) return;
+
+      const state = get(chatStore);
+
+      // Agregar mensaje del usuario inmediatamente
+      update((state) => ({
+        ...state,
+        messages: [
+          ...state.messages,
+          {
+            role: 'user',
+            content: text.trim(),
+            timestamp: new Date().toISOString()
+          }
+        ],
+        isLoading: true,
+        error: null
+      }));
+
+      try {
+        const response = await fetch('/api/chat', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            session_id: state.sessionId,
+            message: text.trim()
+          })
+        });
+
+        if (!response.ok) {
+          // Intentar extraer mensaje de error del servidor
+          let errorMessage = 'No pude procesar tu mensaje. Intenta de nuevo.';
+
+          try {
+            const errorData = await response.json();
+            if (errorData.message) {
+              errorMessage = errorData.message;
+            }
+          } catch {
+            // Si no se puede parsear el error, usar mensaje genérico
+            if (response.status === 400) {
+              errorMessage = 'Mensaje inválido. Intenta con un texto más corto.';
+            } else if (response.status === 502) {
+              errorMessage = 'El servicio de chat no está disponible. Intenta más tarde.';
+            } else if (response.status === 504) {
+              errorMessage = 'La solicitud tardó demasiado. Intenta de nuevo.';
+            }
+          }
+
+          throw new Error(errorMessage);
+        }
+
+        const data: ChatResponse = await response.json();
+
+        // Agregar respuesta del asistente
+        update((state) => ({
+          ...state,
+          messages: [
+            ...state.messages,
+            {
+              role: 'assistant',
+              content: data.response,
+              timestamp: new Date().toISOString()
+            }
+          ],
+          isLoading: false
+        }));
+
+      } catch (e: any) {
+        console.error('Chat error:', e);
+
+        update((state) => ({
+          ...state,
+          isLoading: false,
+          error: e.message || 'Ocurrió un error inesperado. Intenta de nuevo.'
+        }));
       }
-    ]
-  }));
-}
+    },
 
-/**
- * Helper function to add an assistant message
- */
-export function addAssistantMessage(text: string) {
-  chatStore.update((state) => ({
-    ...state,
-    messages: [
-      ...state.messages,
-      {
-        id: state.messages.length + 1,
-        text,
-        sender: 'assistant',
-        timestamp: new Date()
+    /**
+     * Resetea el chat completamente
+     * - Elimina session_id
+     * - Limpia mensajes
+     * - Genera nueva sesión
+     */
+    reset: () => {
+      if (typeof window !== 'undefined') {
+        localStorage.removeItem(STORAGE_KEY);
       }
-    ],
-    isTyping: false
-  }));
+
+      set({
+        ...initialState,
+        sessionId: getOrCreateSessionId()
+      });
+    }
+  };
 }
 
-/**
- * Helper function to set typing indicator
- */
-export function setTyping(isTyping: boolean) {
-  chatStore.update((state) => ({ ...state, isTyping }));
-}
+// ============================================
+// EXPORT
+// ============================================
 
-/**
- * Helper function to reset chat (clear messages and close)
- */
-export function resetChat() {
-  chatStore.set(initialState);
-}
+export const chatStore = createChatStore();
+
+// Backward compatibility exports
+export const openChat = chatStore.open;
+export const closeChat = chatStore.close;
+export const addUserMessage = (text: string) => chatStore.addMessage({ role: 'user', content: text });
+export const addAssistantMessage = (text: string) => chatStore.addMessage({ role: 'assistant', content: text });
+export const setTyping = chatStore.setLoading;
+export const resetChat = chatStore.reset;
