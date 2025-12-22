@@ -21,6 +21,15 @@ Portfolio personal de Frontend Engineer con chat asistente integrado impulsado p
   - Respuestas contextuales sobre experiencia y proyectos
   - Quick actions para preguntas frecuentes
   - Manejo de errores y timeouts
+  - **Personalidad configurable dinámicamente** (sin modificar flujos de n8n)
+
+- **Panel de Administración** (`/admin/chatbot`):
+  - Configuración en tiempo real del chatbot
+  - Gestión de personalidad, tono y reglas de comportamiento
+  - Editor de contexto y conocimiento base
+  - Ajustes de parámetros LLM (temperatura, max_tokens, modelo)
+  - Sistema de validación con Zod
+  - Persistencia en Supabase
 
 - **Theme Toggle**: Modo claro/oscuro con persistencia en localStorage
 - **Mouse Spotlight Effect**: Efecto de iluminación que sigue el cursor del mouse
