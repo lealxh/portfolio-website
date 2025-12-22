@@ -76,16 +76,31 @@ export const POST: RequestHandler = async ({ request }) => {
       // MANEJAR RESPUESTA DE N8N
       // ============================================
 
+      // ============================================
+      // MANEJAR RESPUESTA DE N8N
+      // ============================================
+
+      const responseText = await n8nResponse.text();
+
       if (!n8nResponse.ok) {
         console.error('n8n error:', {
           status: n8nResponse.status,
           statusText: n8nResponse.statusText,
-          text: await n8nResponse.text()
+          text: responseText
         });
         throw error(502, 'Chatbot service unavailable');
       }
 
-      const data = await n8nResponse.json();
+      let data;
+      try {
+        data = JSON.parse(responseText);
+      } catch (jsonError) {
+        console.error('Failed to parse n8n response:', {
+          error: jsonError,
+          responseText: responseText.slice(0, 1000) // Log first 1000 chars
+        });
+        throw error(502, 'Invalid response format from chatbot');
+      }
 
       // ============================================
       // RETORNAR RESPUESTA AL FRONTEND
@@ -93,8 +108,8 @@ export const POST: RequestHandler = async ({ request }) => {
 
       return json({
         session_id: sessionId,
-        response: data.response,
-        user_type: data.user_type
+        response: data.response || 'Lo siento, no pude procesar tu mensaje.',
+        user_type: data.user_type || 'general'
       });
 
     } catch (e: any) {
