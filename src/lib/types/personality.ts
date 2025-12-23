@@ -69,7 +69,13 @@ export const contextSchema = z.object({
 export const llmSettingsSchema = z.object({
     temperature: z.number().min(0).max(1).default(0.7),
     max_tokens: z.number().min(50).max(4000).default(500),
-    model_preference: z.enum(['claude-3-sonnet', 'claude-3-haiku', 'gpt-4o', 'gpt-4o-mini']),
+    model_preference: z.enum([
+        'claude-sonnet-4-5-20250929',
+        'claude-opus-4-5-20251101',
+        'claude-haiku-4-5-20251001',
+        'claude-sonnet-4-20250514',
+        'claude-3-5-haiku-20241022'
+    ]),
     top_p: z.number().min(0).max(1).optional(),
     frequency_penalty: z.number().min(-2).max(2).optional(),
     presence_penalty: z.number().min(-2).max(2).optional()
@@ -254,7 +260,7 @@ Servicios disponibles:
     llm_settings: {
         temperature: 0.7,
         max_tokens: 500,
-        model_preference: 'claude-3-sonnet'
+        model_preference: 'claude-sonnet-4-5-20250929'
     },
     is_active: true
 };

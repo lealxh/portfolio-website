@@ -26,10 +26,11 @@
         bind:value={settings.model_preference}
         class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white"
       >
-        <option value="claude-3-sonnet">Claude 3.5 Sonnet (Recomendado)</option>
-        <option value="claude-3-haiku">Claude 3 Haiku (Más rápido)</option>
-        <option value="gpt-4o">GPT-4o</option>
-        <option value="gpt-4o-mini">GPT-4o Mini</option>
+        <option value="claude-sonnet-4-5-20250929">Claude 4.5 Sonnet (Latest - Sept 2025)</option>
+        <option value="claude-opus-4-5-20251101">Claude 4.5 Opus (Latest - Nov 2025)</option>
+        <option value="claude-haiku-4-5-20251001">Claude 4.5 Haiku (Latest - Oct 2025)</option>
+        <option value="claude-sonnet-4-20250514">Claude 4.0 Sonnet (May 2025)</option>
+        <option value="claude-3-5-haiku-20241022">Claude 3.5 Haiku (Oct 2024)</option>
       </select>
       {#if errors['llm_settings.model_preference']}
         <p class="mt-1 text-sm text-red-600 dark:text-red-400">

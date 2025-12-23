@@ -10,4 +10,6 @@
   <ChatModal />
 {/if}
 
-<ChatButton />
+{#if !isOpen}
+  <ChatButton />
+{/if}
